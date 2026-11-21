@@ -7,7 +7,7 @@
   <meta name="description" content="Identidades visuales, fotografía y contenido estratégico para hoteles boutique, restaurantes y marcas wellness que quieren comunicar su esencia y elevar su imagen.">
   <link rel="preload" href="FigoShiftz-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="FigoShiftz-Italic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
 
@@ -270,7 +270,7 @@
         <div class="field"><label for="web">Web / Instagram</label><input id="web" name="web" type="text" placeholder="@tunegocio o tu web"></div>
         <div class="field"><label for="mensaje">Mensaje</label><textarea id="mensaje" name="mensaje" placeholder="Cuéntame sobre tu proyecto…"></textarea></div>
         <!-- Campo trampa anti-spam: invisible para personas -->
-        <div class="hp" aria-hidden="true"><label>No rellenar<input type="text" name="empresa_web" tabindex="-1" autocomplete="off"></label></div>
+        <div class="hp" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><input type="text" name="empresa_web" tabindex="-1" autocomplete="off"></div>
         <button type="submit" class="btn btn--taupe" id="formBtn">Enviar mensaje</button>
         <p class="form__note" id="formNote"></p>
       </form>
