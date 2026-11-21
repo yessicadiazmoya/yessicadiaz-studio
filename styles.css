@@ -274,6 +274,8 @@ section { scroll-margin-top: 80px; }
 .field textarea { min-height: 150px; resize: vertical; }
 .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--taupe); background: var(--sand); }
 .field ::placeholder { color: #A69A8E; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form .btn:disabled { opacity: .6; cursor: wait; transform: none; }
 .form .btn { width: 100%; justify-content: center; padding: 22px; }
 .form__note { text-align: center; font-size: 14px; color: var(--taupe); margin: 16px 0 0; min-height: 1.4em; }
 

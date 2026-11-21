@@ -269,7 +269,9 @@
         </div>
         <div class="field"><label for="web">Web / Instagram</label><input id="web" name="web" type="text" placeholder="@tunegocio o tu web"></div>
         <div class="field"><label for="mensaje">Mensaje</label><textarea id="mensaje" name="mensaje" placeholder="Cuéntame sobre tu proyecto…"></textarea></div>
-        <button type="submit" class="btn btn--taupe">Enviar mensaje</button>
+        <!-- Campo trampa anti-spam: invisible para personas -->
+        <div class="hp" aria-hidden="true"><label>No rellenar<input type="text" name="empresa_web" tabindex="-1" autocomplete="off"></label></div>
+        <button type="submit" class="btn btn--taupe" id="formBtn">Enviar mensaje</button>
         <p class="form__note" id="formNote"></p>
       </form>
     </div>
@@ -320,13 +322,35 @@
     }), { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    // Formulario: abre el correo con los datos (sin servidor)
-    document.getElementById('contactForm').addEventListener('submit', e => {
+    // Formulario: envía los datos a Google (hoja "Contactos" + email a Yessica)
+    const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxHvqqEp6Lcuz48y5xBla8aqbtvdud8QzsiuAsh9SvNrTNu6ienfDfBl-28B6L3_0BJPQ/exec'; // URL de la aplicación web de Google Apps Script
+    const form = document.getElementById('contactForm');
+    const note = document.getElementById('formNote');
+    const btn = document.getElementById('formBtn');
+
+    form.addEventListener('submit', async e => {
       e.preventDefault();
-      const f = e.target;
-      const body = `Nombre: ${f.nombre.value}\nEmail: ${f.email.value}\nServicio: ${f.servicio.value}\nWeb/Instagram: ${f.web.value}\n\n${f.mensaje.value}`;
-      window.location.href = `mailto:yessicadiazmoya@gmail.com?subject=${encodeURIComponent('Nuevo proyecto – ' + f.nombre.value)}&body=${encodeURIComponent(body)}`;
-      document.getElementById('formNote').textContent = '¡Gracias! Se abrirá tu correo para enviar el mensaje.';
+      const datos = new URLSearchParams(new FormData(form));
+
+      if (!FORM_ENDPOINT) { // respaldo: abre el correo si aún no hay conexión
+        const body = `Nombre: ${form.nombre.value}\nEmail: ${form.email.value}\nServicio: ${form.servicio.value}\nWeb/Instagram: ${form.web.value}\n\n${form.mensaje.value}`;
+        window.location.href = `mailto:yessicadiazmoya@gmail.com?subject=${encodeURIComponent('Nuevo proyecto – ' + form.nombre.value)}&body=${encodeURIComponent(body)}`;
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+      note.textContent = '';
+      try {
+        await fetch(FORM_ENDPOINT, { method: 'POST', mode: 'no-cors', body: datos });
+        form.reset();
+        note.textContent = '¡Gracias! He recibido tu mensaje y te escribiré en menos de 48 horas.';
+      } catch (err) {
+        note.textContent = 'No se pudo enviar. Escríbeme a yessicadiazmoya@gmail.com o por WhatsApp.';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Enviar mensaje';
+      }
     });
 
     document.getElementById('year').textContent = new Date().getFullYear();
