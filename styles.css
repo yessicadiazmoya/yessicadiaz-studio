@@ -419,6 +419,26 @@ section { scroll-margin-top: 80px; }
 .wa-float svg { width: 26px; height: 26px; stroke: currentColor; fill: none; stroke-width: 1.5; }
 .nav.is-open ~ .wa-float { opacity: 0; pointer-events: none; }
 
+/* ============ FLECHAS SUBIR / BAJAR ============ */
+.scroll-nav {
+  position: fixed; right: 26px; bottom: 96px; z-index: 40;
+  display: flex; flex-direction: column; gap: 6px; padding: 6px;
+  background: rgba(255,255,255,.85); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border: 1px solid var(--line); border-radius: 999px;
+  box-shadow: 0 14px 30px -14px rgba(58,49,42,.45);
+  transition: opacity .3s;
+}
+.scroll-nav__btn {
+  width: 38px; height: 38px; border-radius: 50%; border: 0; padding: 0; cursor: pointer;
+  background: transparent; color: var(--taupe-dark); display: grid; place-items: center;
+  transition: background .3s, color .3s, opacity .3s, height .3s;
+}
+.scroll-nav__btn:hover { background: var(--taupe); color: var(--white); }
+.scroll-nav__btn svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.scroll-nav__btn.is-hidden { opacity: 0; height: 0; pointer-events: none; }
+.scroll-nav:has(.is-hidden + .is-hidden) { opacity: 0; }
+.nav.is-open ~ .scroll-nav { opacity: 0; pointer-events: none; }
+
 /* ============ ANIMACIÓN DE ENTRADA ============ */
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 1s ease, transform 1s ease; }
 .reveal.is-visible { opacity: 1; transform: none; }
@@ -502,6 +522,7 @@ section { scroll-margin-top: 80px; }
   .footer { padding: 64px 0 90px; }
   .footer .logo { font-size: 32px; }
   .wa-float { right: 16px; bottom: 16px; width: 54px; height: 54px; }
+  .scroll-nav { right: 18px; bottom: 82px; }
   .services, .sectors { grid-template-columns: 1fr; }
   .review { width: 270px; padding: 24px 22px 20px; }
   .reviews-group { gap: 20px; padding-right: 20px; }
