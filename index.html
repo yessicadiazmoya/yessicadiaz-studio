@@ -8,7 +8,7 @@
   <link rel="preload" href="FigoShiftz-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="FigoShiftz-Italic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="portada.jpg" as="image">
-  <link rel="stylesheet" href="styles.css?v=9">
+  <link rel="stylesheet" href="styles.css?v=10">
 </head>
 <body>
 
@@ -318,32 +318,37 @@
   </section>
 
   <!-- ============ OPINIONES ============ -->
-  <section class="section" id="opiniones">
+  <section class="section section--reviews" id="opiniones">
     <div class="container">
       <div class="center-head reveal">
         <p class="eyebrow">Lo que dicen de mí</p>
         <h2 class="display">Opiniones de <em>mis clientes</em></h2>
       </div>
       <div class="reviews">
-        <figure class="review reveal">
+        <figure class="review review--light">
+          <span class="review__mark" aria-hidden="true">“</span>
           <blockquote><p>Nos recomendaron los servicios de Yessica como profesional del diseño y estamos sorprendidos por el trabajo realizado. Ella se encargó desde cero del branding de la empresa y nos sentimos identificados con ella.</p></blockquote>
-          <figcaption>Digitech</figcaption>
+          <figcaption><span class="review__avatar">D</span>Digitech</figcaption>
         </figure>
-        <figure class="review reveal">
+        <figure class="review review--dark">
+          <span class="review__mark" aria-hidden="true">“</span>
           <blockquote><p>Contratamos sus servicios para nuestra nueva marca de e-commerce en Perú y llenó nuestras expectativas.</p></blockquote>
-          <figcaption>Inshop</figcaption>
+          <figcaption><span class="review__avatar">I</span>Inshop</figcaption>
         </figure>
-        <figure class="review reveal">
+        <figure class="review review--blend">
+          <span class="review__mark" aria-hidden="true">“</span>
           <blockquote><p>Aspectos positivos: capacidad de respuesta, calidad, valor y profesionalidad.</p></blockquote>
-          <figcaption>Gesotec E.I.R.L.</figcaption>
+          <figcaption><span class="review__avatar">G</span>Gesotec E.I.R.L.</figcaption>
         </figure>
-        <figure class="review reveal">
+        <figure class="review review--taupe">
+          <span class="review__mark" aria-hidden="true">“</span>
           <blockquote><p>Muy contento con el trabajo realizado. Yessica es profesional y desde el primer momento captó nuestras ideas.</p></blockquote>
-          <figcaption>Insidio</figcaption>
+          <figcaption><span class="review__avatar">I</span>Insidio</figcaption>
         </figure>
-        <figure class="review reveal">
+        <figure class="review review--light">
+          <span class="review__mark" aria-hidden="true">“</span>
           <blockquote><p>¡Hola! Principalmente es muy amable y ofrece súper buenos precios. Nosotros, en particular, hemos contado siempre con su servicio desde que se formó nuestra empresa.</p></blockquote>
-          <figcaption>Inmuebles Xpress</figcaption>
+          <figcaption><span class="review__avatar">I</span>Inmuebles Xpress</figcaption>
         </figure>
       </div>
     </div>
@@ -491,6 +496,12 @@
       if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
     }), { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Opiniones: cada tarjeta entra al aparecer en pantalla
+    const ioR = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('is-in'); ioR.unobserve(e.target); }
+    }), { threshold: 0.2 });
+    document.querySelectorAll('.review').forEach(el => ioR.observe(el));
 
     // Formulario: envía los datos a Google (hoja "Contactos" + email a Yessica)
     const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxHvqqEp6Lcuz48y5xBla8aqbtvdud8QzsiuAsh9SvNrTNu6ienfDfBl-28B6L3_0BJPQ/exec'; // URL de la aplicación web de Google Apps Script
