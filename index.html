@@ -8,7 +8,7 @@
   <link rel="preload" href="FigoShiftz-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="FigoShiftz-Italic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="portada.jpg" as="image">
-  <link rel="stylesheet" href="styles.css?v=13">
+  <link rel="stylesheet" href="styles.css?v=14">
 </head>
 <body>
 
@@ -504,7 +504,8 @@
     const actualizarFlechas = () => {
       const y = window.scrollY;
       const fin = document.documentElement.scrollHeight - window.innerHeight;
-      upBtn.classList.toggle('is-hidden', y < 300);
+      const hero = document.getElementById('inicio');
+      document.getElementById('scrollNav').classList.toggle('is-on', y > hero.offsetHeight * 0.8);
       downBtn.classList.toggle('is-hidden', y > fin - 40);
     };
     window.addEventListener('scroll', actualizarFlechas, { passive: true }); actualizarFlechas();
