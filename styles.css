@@ -4,6 +4,10 @@
 @font-face { font-family: "Charter"; src: url("Charter-Roman.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
 @font-face { font-family: "Charter"; src: url("Charter-Italic.ttf") format("truetype"); font-weight: 400; font-style: italic; font-display: swap; }
 @font-face { font-family: "Charter"; src: url("Charter-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Avenir YD"; src: url("Avenir-Roman.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Avenir YD"; src: url("Avenir-Oblique.ttf") format("truetype"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Avenir YD"; src: url("Avenir-Medium.ttf") format("truetype"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Avenir YD"; src: url("Avenir-Heavy.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }
 
 /* ============ COLORES ============ */
 :root {
@@ -19,6 +23,7 @@
 
   --serif-display: "Figo Shiftz", "Playfair Display", Georgia, serif;
   --serif-text: "Charter", Georgia, "Times New Roman", serif;
+  --sans: "Avenir YD", "Avenir", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
 
   --container: 1240px;
   --radius: 22px;
@@ -102,6 +107,17 @@ h3 { font-family: var(--serif-display); font-weight: 400; }
 }
 .nav__links a:not(.btn):hover::after { width: 100%; }
 .nav .btn { padding: 13px 26px; }
+
+/* ============ AVENIR: solo párrafos y menús ============ */
+p:not(.eyebrow):not(.about__sign),
+.solution__problem,
+.nav__links a,
+.nav__links .btn {
+  font-family: var(--sans);
+}
+p:not(.eyebrow):not(.about__sign) { font-weight: 400; }
+p strong { font-weight: 700; }
+.nav__links a, .nav__links .btn { font-weight: 500; }
 
 .nav.is-scrolled { background: rgba(255,255,255,.96); box-shadow: 0 1px 0 var(--line); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
 .nav.is-scrolled .nav__inner { height: 80px; }
@@ -355,7 +371,7 @@ section { scroll-margin-top: 80px; }
   .eyebrow { font-size: 12px; letter-spacing: .26em; margin-bottom: 16px; }
   h2.display { font-size: clamp(36px, 10.5vw, 46px); }
   .nav__inner { height: 76px; }
-  .nav__links a:not(.btn) { font-family: var(--serif-display); font-size: 34px; letter-spacing: 0; text-transform: none; }
+  .nav__links a:not(.btn) { font-size: 17px; letter-spacing: .28em; text-transform: uppercase; }
   .nav__links a:not(.btn)::after { display: none; }
   .hero__content { padding: 120px 0 80px; }
   .hero p { margin: 28px auto 38px; }
