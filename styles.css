@@ -186,7 +186,7 @@ section { scroll-margin-top: 80px; }
 
 /* Sobre mí */
 .about { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(40px, 7vw, 110px); align-items: center; }
-.about__photo { position: relative; width: 100%; max-width: 440px; justify-self: end; }
+.about__photo { position: relative; width: 100%; max-width: 360px; justify-self: end; }
 .about__photo img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: var(--radius); box-shadow: 0 30px 60px -30px rgba(58,49,42,.35); }
 .about__badge {
   position: absolute; right: -28px; bottom: 40px;
@@ -500,7 +500,7 @@ section { scroll-margin-top: 80px; }
   .about, .cta, .contact, .section-head { grid-template-columns: 1fr; }
   .section-head .lead { justify-self: start; }
   .about__badge { right: 16px; }
-  .about__photo { justify-self: start; }
+  .about__photo { justify-self: start; max-width: 300px; }
   .solution { grid-template-columns: 50px 1fr; }
   .solution__answer { grid-column: 2; font-size: 22px; }
   .footer__top { grid-template-columns: 1fr 1fr; }
